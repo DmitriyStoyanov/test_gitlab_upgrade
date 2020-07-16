@@ -1,0 +1,3 @@
+#- src: geerlingguy.gitlab
+- name: geerlingguy.gitlab
+  src: https://github.com/DmitriyStoyanov/ansible-role-gitlab
