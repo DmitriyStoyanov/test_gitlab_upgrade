@@ -24,21 +24,21 @@ function background_migration_in_progress() {
 }
 
 function gitlab_install {
-        gitlab_version=$1
-        if [ -f "/usr/bin/gitlab-rails" ];
-        then
-          echo "Waiting for background migration to complete"
-          date
-          while background_migration_in_progress
-          do
-            echo "background migration still in progress..."
-            sleep 60
-          done
-        fi
-        date
-        echo Installation of Gitlab version "$gitlab_version"
-        sudo ansible-playbook --connection=local --inventory 127.0.0.1, playbook.yml --extra-vars "gitlab_version=$gitlab_version"
-        date
+  gitlab_version=$1
+  if [ -f "/usr/bin/gitlab-rails" ];
+  then
+    echo "Waiting for background migration to complete"
+    date
+    while background_migration_in_progress
+    do
+      echo "background migration still in progress..."
+      sleep 60
+    done
+  fi
+  date
+  echo Installation of Gitlab version "$gitlab_version"
+  sudo ansible-playbook --connection=local --inventory 127.0.0.1, playbook.yml --extra-vars "gitlab_version=$gitlab_version"
+  date
 }
 
 gitlab_install 11.10.8-ce.0
